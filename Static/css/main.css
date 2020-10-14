@@ -1,16 +1,16 @@
-/* import fonts from fonts.css file */ 
+/* import fonts from fonts.css file */
 @import url(./fonts.css);
 
-/* css variables */ 
+/* css variables */
 @import url(./partials/_variables.css);
 
-/* import global styling */ 
+/* import global styling */
 @import url(./partials/_global.css);
 
 
 
 
-/* start navigation */ 
+/* start navigation */
 
 .header_area .main-menu .navbar{
     padding: 1rem 3rem ;
@@ -37,10 +37,10 @@
 }
 
 
-/* end navigation */ 
+/* end navigation */
 
 
-/* Banner Area */ 
+/* Banner Area */
 
 .site-main .site-banner {
     background: url(../images/bg1.png);
@@ -52,31 +52,14 @@
 }
 
 .site-main .site-banner .site-title h3{
-    padding-top: 35%;
+    padding-top: 45%;
     font-weight: 500;
+    color: #fff;
 }
 
-.site-main .site-banner .site-title h3::after{
-    content: " ";
-    height: 2px;
-    width: 18vw;
-    background: black;
-    display: inline-block;
-    margin-left: 5%;
-    transform: translateY(-10px);
-}
-
-.site-main .site-banner .site-title h1{
-    font-size: 5rem;
-}
-
-.site-main .site-banner .site-title h4{
+.site-main .site-banner .site-title p{
     font-size: 1.5rem;
-}
-
-.site-main .site-banner .banner-image > img{
-    padding: 7rem 0;
-    width: 90rem;
+    color: #fff;
 }
 
 
@@ -84,7 +67,7 @@
 /* End Banner Area */
 
 
-/* Start About Area */ 
+/* Start About Area */
 
 .site-main .about-area{
     padding: 8rem 5rem;
@@ -100,9 +83,9 @@
     padding: .4rem 0;
 }
 
-/* End About Area */ 
+/* End About Area */
 
-/* Services Area */ 
+/* Services Area */
 
 .site-main .services-area{
     padding: 7rem 2rem;
@@ -130,4 +113,37 @@
 
 
 
-/* End Services Area */ 
+/* End Services Area */
+
+
+/* Start Footer Area */
+
+.footer-links .footer-top {
+    padding: 30px 0px;
+    background: url(../images/footer-bg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 400px;
+}
+
+.footer-links .footer-bottom {
+    background-color:#181c2a;
+    padding: 22px 0px;
+}
+
+.footer-links .footer-bottom .copyright{
+    color: #fff;
+}
+
+.footer-links .footer-top .widget-title{
+    color: #fff;
+}
+
+.footer-links .footer-top .widget-content{
+    color: #aaadb7;
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 500;
+}
+/* End Footer Area */
