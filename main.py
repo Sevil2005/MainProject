@@ -1,6 +1,48 @@
-from flask import Flask, render_template, url_for
-app = Flask(__name__)
+import os
+import smtplib
+from flask import Flask, render_template, url_for, redirect, flash, request
+from forms import LoginForm
+from forms import RegisterForm
+# from flask_sqlalchemy import SQLAlchemy
 
+
+posts = [
+    {
+        'author': "Sevil Rasulova",
+        'title': "Post 1",
+        'content': "Post 1 Content",
+        'date': "26-Sep"
+    },
+    {
+        'author': "Anar Rzayev",
+        'title': "Post 2",
+        'content': "Post 2 Content",
+        'date': "27-Sep"
+    },
+    {
+        'author': "Zəhra Bayramlı",
+        'title': "Post 3",
+        'content': "Post 3 Content",
+        'date': "28-Sep"
+    }
+]
+
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'hardsecretkey'
+# app.config['SQLALCHEMY DATABASE URI'] = 'mysql://root:''@localhost/flaskdb'
+# app.config['SQLALCHEMY TRACK_MODIFICATIONS'] = False
+#
+# db = SQLAlchemy(app)
+#
+# class UserInfo(db.Model):
+#     id = db.Column (db.Integer, primary_key = True)
+#     email = db.Column (db.String(100), unique = True)
+#     password = db.Column(db.String(100))
+#
+#     def __init__(self, email, password):
+#         self.email = email
+#         self.password = password
 
 @app.route("/")
 def home():
@@ -11,13 +53,43 @@ def home():
 def about():
     return render_template('about.html', title='Haqqımızda')
 
-@app.route("/daxilol")
+@app.route("/daxil-ol", methods=['GET', 'POST'])
 def login():
-    return render_template('about.html', title='Daxil Ol')
+    form = LoginForm()
 
-@app.route("/qeydiyyat")
+    if form.validate_on_submit():
+        if request.form['email'] != 'sevillerasulova@gmail.com' or request.form['password'] != '123':
+            flash("Yanlış Məlumat Daxil Etmisiniz, Yenidən Cəhd Edin")
+        else:
+            return redirect(url_for('home'))
+
+    return render_template('login.html', title='Daxil Ol', form=form)
+
+# @app.route("/register")
+# def reg():
+#     form = RegisterForm()
+#     return render_template('register.html', title='Qeydiyyat')
+
+@app.route("/qeydiyyat", methods=['GET', 'POST'])
 def register():
-    return render_template('about.html', title='Qeydiyyat')
+    # name = request.form.get("name")
+    # email = request.form.get("email")
+    # password = request.form.get("password")
+    form = RegisterForm()
+    if form.validate_on_submit():
+        return render_template('reg_success.html', title='Qeydiyyat')
+
+    return render_template('register.html', title='Qeydiyyat', form=form)
+
+    # if not name or not email or not password:
+    #     return "failure......."
+    # message = "You are registered"
+    # server = smtplib.SMTP("smtp.gmail.com", 587)
+    # server.ehlo()
+    # server.starttls()
+    # server.login("sevillerasulova@gmail.com", os.getenv("4047042s"))
+    # server.sendmail("sevillerasulova@gmail.com", email, message)
+    # return "halloooooo greattt"
 
 @app.route('/riyaziyyat-olimpiadaları')
 def olympiad():
@@ -25,10 +97,10 @@ def olympiad():
 
 @app.route('/məsləhət-bloqu')
 def advice():
-    return render_template('advice.html', title="Məsləhət Bloqu")
+    return render_template('blog.html', title="Məsləhət Bloqu", posts=posts)
 
 @app.route('/müzakirə')
-def discUSS():
+def discuss():
     return render_template('discuss.html', title="Müzakirə")
 
 

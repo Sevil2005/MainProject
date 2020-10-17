@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block body %}
+    {% for post in posts %}
+        <div class="container" style="padding:10px 0px;">
+            <article class="media content-section" style="background: #ffffff; padding: 10px 20px; border: 1px solid #dddddd; border-radius: 3px; margin-bottom: 20px;">
+                <div class="media-body">
+                    <div class="article-metadata" style="padding-bottom: 1px; margin-bottom: 4px; border-bottom: 1px solid #e3e3e3">
+                        <a class="mr-2" href="#" style="color:black;">{{ post.author }}</a>
+                        <small class="text-muted">{{ post.date }}</small>
+                    </div>
+                    <h2><a class="article-title" href="#" style="color:#e78200;">{{ post.title }}</a></h2>
+                    <p class="article-content">{{ post.content }}</p>
+                </div>
+            </article>
+        </div>
+    {% endfor %}
+{% endblock %}
