@@ -5,6 +5,9 @@ from forms import LoginForm
 from forms import RegisterForm
 # from flask_sqlalchemy import SQLAlchemy
 
+EMAIL_ADDRESS = os.environ.get('EMAIL_USER')
+EMAIL_PASSWORD = os.environ.get('EMAIL_PASS')
+
 
 posts = [
     {
@@ -77,19 +80,24 @@ def register():
     # password = request.form.get("password")
     form = RegisterForm()
     if form.validate_on_submit():
+        with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
+            smtp.ehlo()
+            smtp.starttls()
+            smtp.ehlo()
+            smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+            subject = "From Mathology"
+            body = "You are registered"
+            msg = f'Subject: {subject}\n\n{body}'
+            smtp.sendmail(EMAIL_ADDRESS, request.form['email'], msg)
         return render_template('reg_success.html', title='Qeydiyyat')
 
     return render_template('register.html', title='Qeydiyyat', form=form)
 
-    # if not name or not email or not password:
-    #     return "failure......."
-    # message = "You are registered"
     # server = smtplib.SMTP("smtp.gmail.com", 587)
     # server.ehlo()
     # server.starttls()
-    # server.login("sevillerasulova@gmail.com", os.getenv("4047042s"))
-    # server.sendmail("sevillerasulova@gmail.com", email, message)
-    # return "halloooooo greattt"
+    # server.login(config.EMAIL_ADDRESS, config.PASSWORD)
+    # server.sendmail(config.EMAIL_ADDRESS, request.form['email'], message)
 
 @app.route('/riyaziyyat-olimpiadaları')
 def olympiad():
