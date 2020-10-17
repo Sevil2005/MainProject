@@ -10,7 +10,6 @@
             {{form.name(size=32)}}
 
             {% for error in form.name.errors %}
-            <!--<span style="color:red;">{{error}}</span>-->
                 <div class="alert alert-success alert-dismissable" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="close">
                         <span aria-hidden="true">x</span>
@@ -24,13 +23,12 @@
             {{form.email(size=32)}}
 
             {% for error in form.email.errors %}
-            <!--<span style="color:red;">{{error}}</span>-->
-            <div class="alert alert-success alert-dismissable" role="alert">
+                <div class="alert alert-success alert-dismissable" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="close">
                         <span aria-hidden="true">x</span>
                     </button>
                     {{ error }}
-            </div>
+                </div>
             {% endfor  %}
         </p>
         <p>
@@ -38,13 +36,12 @@
             {{form.password(size=32)}}
 
             {% for error in form.password.errors %}
-            <!--<span style="color:red;">{{error}}</span>-->
-            <div class="alert alert-success alert-dismissable" role="alert">
+                <div class="alert alert-success alert-dismissable" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="close">
                         <span aria-hidden="true">x</span>
                     </button>
                     {{ error }}
-            </div>
+                </div>
             {% endfor  %}
         </p>
         <p>
