@@ -87,7 +87,7 @@ def register():
     # server = smtplib.SMTP("smtp.gmail.com", 587)
     # server.ehlo()
     # server.starttls()
-    # server.login("sevillerasulova@gmail.com", os.getenv("4047042s"))
+    # server.login("sevillerasulova@gmail.com", password)
     # server.sendmail("sevillerasulova@gmail.com", email, message)
     # return "halloooooo greattt"
 
